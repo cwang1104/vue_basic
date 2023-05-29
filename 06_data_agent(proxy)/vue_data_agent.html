@@ -9,17 +9,21 @@
 </head>
 <body>
     <div id="root">
-        
+        <h2>学校名称： {{name}}</h2>
+        <h2>学校地址： {{address}}</h2>
     </div>
     <script>
+
+        let data = {
+                    name:"svgg",
+                    address:"beiJing"
+                }
        const vm =  new Vue({
             data(){
-                return{
-                    name:"svgg"
-                }
+                return data
             }
         })
-        v.$mount("#root")
+        vm.$mount("#root")
     </script>
 </body>
 </html>
