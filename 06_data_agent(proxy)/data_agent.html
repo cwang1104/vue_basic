@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>_object.defineproperty</title>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+    <script>
+
+        let person = {
+            name:"jack",
+            age:18,
+        }
+        Object.defineProperty(person,"addr",{
+            value:"cd",
+            enumerable:true,
+            writable:true,
+            configurable:true,
+        })
+        console.log(person)
+        console.log(Object.keys(person))
+
+       const v =  new Vue({
+            data(){
+                return{
+                    name:"svgg"
+                }
+            }
+        })
+        v.$mount("#root")
+    </script>
+</body>
+</html>
