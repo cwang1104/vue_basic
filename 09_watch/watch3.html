@@ -48,11 +48,16 @@
             },
         
             watch:{
-                tqBool:{
-                    handler(newVal,oldVal){
-                        console.log("change",newVal,oldVal)
-                    }
-                },
+                //全写
+                // tqBool:{
+                //     handler(newVal,oldVal){
+                //         console.log("change",newVal,oldVal)
+                //     }
+                // },
+                //简写
+                // tqBool(newval,oldval){
+                //     console.log("change tqbool",newval,oldval)
+                // },
                 // "members.a":{
                 //     handler(newval,oldval){
                 //         console.log("a changed",newval,oldval)
@@ -73,6 +78,11 @@
         //         console.log("change with $",newVal,oldVal)
         //     }
         // })
+            //简写
+         vm.$watch('tqBool',function(newval,oldVal){
+            console.log("$watch",newval,oldVal)
+         })
+
     </script>
 </body>
 </html>

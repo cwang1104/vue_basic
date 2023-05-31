@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>姓名 watch写法</title>
+</head>
+
+<body>
+    <div id="root">
+        <h1>姓名 watch写法</h1>
+        <hr>
+
+        <div class="cal2">
+            <h2>姓名 watch写法 {{name}}</h2>
+            姓: <input type="text" placeholder="输入姓" v-model="fName"> <br> <br>
+            名: <input type="text" placeholder="输入名" v-model="lName"><br><br>
+            姓名：<span>{{fullName}}</span>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    fName: "",
+                    lName: "",
+                    fullName: ""
+
+                }
+            },
+            computed: {},
+            watch: {
+                fName: {
+                    immediate: true,
+                    handler(newVal, oldVal) {
+                        setTimeout(() => {
+                            console.log(this)
+                            this.fullName = newVal + "-" + this.lName
+                        }, 1000);
+
+                    }
+                },
+                lName: {
+                    immediate: true,
+                    handler(newval, oldval) {
+                        this.fullName = this.fName + '-' + newval
+                    }
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>
