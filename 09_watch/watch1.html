@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue</title>
+</head>
+<body>
+    <div id="root">
+        <h2>改变天气样例</h2>
+        <span>天气{{nowTq}}</span>
+        <button @click="change">改变天气</button>
+    </div>
+    <script>
+        let lx = '凉爽'
+        let yr = '炎热'
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"vue learn",
+                    tqBool:true
+                }
+            },
+            methods:{
+                change(){
+                   this.tqBool = !this.tqBool
+                }
+            },
+            
+            computed:{
+                nowTq(){
+                    return (this.tqBool ? "炎热" : "凉爽")
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+</html>

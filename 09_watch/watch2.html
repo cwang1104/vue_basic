@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue</title>
+</head>
+<body>
+    <div id="root">
+        <h2>监视属性</h2>
+        <span>天气{{nowTq}}</span>
+        <button @click="change">改变天气</button>
+    </div>
+    <script>
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"vue learn",
+                    tqBool:true
+                }
+            },
+            methods:{
+                change(){
+                   this.tqBool = !this.tqBool
+                }
+            },
+            
+            computed:{
+                nowTq(){
+                    return (this.tqBool ? "炎热" : "凉爽")
+                }
+            }
+        
+            // watch:{
+            //     tqBool:{
+            //         handler(newVal,oldVal){
+            //             console.log("change",newVal,oldVal)
+            //         }
+            //     }
+            // }
+        })
+        vm.$mount("#root")
+        vm.$watch('nowTq',{
+            immediate:true, //是否在初始化的时候调用
+            handler(newVal,oldVal){
+                console.log("change with $",newVal,oldVal)
+            }
+        })
+    </script>
+</body>
+</html>
