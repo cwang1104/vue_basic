@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>键盘事件</title>
+</head>
+<style>
+    *{
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <div id="root">
+        <h2>键盘事件</h2>
+        <input type="text" placeholder="回车显示输入 js方法" @keyup="showInfoJs"> <br>
+        <input type="text" placeholder="回车显示输入 vue方法" @keyup.enter="showInfoVue">
+    </div>
+    <script>
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"svgg"
+                }
+            },
+            methods:{
+                showInfoJs(e){
+                    // console.log(e)
+                    // console.log(e.keyCode)
+                    if (e.keyCode !==13) return
+                    console.log(e.target.value) 
+                },
+                showInfoVue(e){
+                    console.log(e.target.value) 
+                }
+
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+</html>

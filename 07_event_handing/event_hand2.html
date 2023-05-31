@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>事件修饰符</title>
+</head>
+<style>
+    *{
+        margin-top: 20px;
+    }
+    .ddddd{
+        background-color: aqua;
+    }
+</style>
+<body>
+    <div id="root">
+        <h2>时间修饰符  {{name}}</h2>
+        <a href="https://www.bilibili.com/" @click="showInfo"> 点击弹窗跳转</a> <br>
+        <a href="https://www.bilibili.com/" @click.prevent="showInfo"> 点击弹窗不跳转</a>
+
+        <div @click="showInfo" class="ddddd">
+            <button @click="showInfo">点击弹窗冒泡</button>
+            //先阻止默认事件再停止冒泡
+            <a href="https://www.bilibili.com/" @click.prevent.stop="showInfo"> 点击弹窗不跳转</a>
+            //先停止冒泡再阻止默认事件   虽然实现效果一样，但执行顺序不一样
+            <a href="https://www.bilibili.com/" @click.stop.prevent="showInfo"> 点击弹窗不跳转</a>
+        </div>
+        <div @click="showInfo" class="ddddd">
+            <button @click.stop="showInfo">点击弹窗不冒泡</button>
+        </div>
+        
+        <button @click.once="showInfo">只能点一次</button>
+
+        <div @click.self="showInfo" class="ddddd">
+            <button @click.stop="showInfo">点击弹窗不冒泡 self</button>
+        </div>
+
+    </div>
+    <script>
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"vue learn"
+                }
+            },
+            methods:{
+                showInfo(){
+                    alert("hello")
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+</html>

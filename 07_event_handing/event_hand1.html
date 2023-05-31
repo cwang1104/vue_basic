@@ -5,17 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/vue.js"></script>
-    <title>Vue</title>
+    <title>事件处理</title>
 </head>
 <body>
     <div id="root">
-        
+        <h2>事件处理： {{name}}</h2>
+        <button v-on:click="showInfo">点击弹窗 v-on</button> <br><br>
+        <button @click="showInfo2(66)">点击弹窗 @</button>
+
     </div>
     <script>
        const vm =  new Vue({
             data(){
                 return{
                     name:"svgg"
+                }
+            },
+            methods:{
+                showInfo(){
+                    alert("hello")
+                },
+                showInfo2(number){
+            
+                    alert("hello 2" + number)
                 }
             }
         })
