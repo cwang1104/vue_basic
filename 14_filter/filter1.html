@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <script src="../js/dayjs.min.js"></script>
+    <title>Vue 过滤器</title>
+</head>
+<body>
+    <div id="root">
+        <h2>格式化时间戳</h2>
+        <h3>时间戳：{{time}}</h3>
+        <!-- //计算属性实现 -->
+        <h3>计算属性实现</h3>
+        <h3>格式化后：{{formatTime}}</h3>
+        <hr>
+        <!-- 过滤器实现 -->
+        <h3>过滤器实现</h3>
+        <h3>格式化后：{{time | timeformater}}</h3>
+        <h3>过滤器实现传参</h3>
+        <h3>格式化后：{{time | timeformater("YYYY-MM-DD")}}</h3>
+        <h3>过滤器实现串联</h3>
+        <h3>格式化后：{{time | timeformater("YYYY-MM-DD") | strSlice}}</h3>
+    </div>
+    <script>
+        //全局过滤器
+        Vue.filter('strSlice',function(val){
+            return val.slice(0,4)
+        })
+
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"vue learn",
+                    time:1685615328000,
+                }
+            },
+            computed:{
+                formatTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            filters:{
+                timeformater(t,str="YYYY-MM-DD HH:mm:ss"){
+                    return dayjs(t).format(str)
+                }
+               
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+</html>
