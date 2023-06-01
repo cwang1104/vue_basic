@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>key的原理</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2>遍历数组 列表过滤</h2>
+        <hr><br>
+
+        <h2>人员信息</h2>
+        <input type="text" v-model="keyWords">
+        <!-- v-show实现 -->
+        <!-- <ul>
+            <li v-for="p,index in personList" :key="p.id" v-show="p.name.includes(keyWords)">
+                {{p.name}} - {{p.age}} - {{p.gender}}
+            </li>
+        </ul> -->
+
+        <ul>
+            <li v-for="p,index in filterPersons" :key="p.id">
+                {{p.name}} - {{p.age}} - {{p.gender}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    personList: [
+                        { id: 001, name: '马冬梅', age: 18, gender: "女" },
+                        { id: 002, name: '周冬雨', age: 20, gender: "女" },
+                        { id: 003, name: '周杰伦', age: 21, gender: "男" },
+                        { id: 004, name: '温兆伦', age: 22, gender: "男" }
+                    ],
+                    keyWords: ""
+                }
+            },
+            computed:{
+                filterPersons(){
+                    return this.personList.filter((p)=>{
+                        return p.name.indexOf(this.keyWords) !==  -1
+                    })
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>

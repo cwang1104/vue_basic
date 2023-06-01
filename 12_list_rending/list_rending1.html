@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue 列表渲染</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2>列表渲染 {{name}}</h2>
+        <hr>
+        <!-- 遍历数组 -->
+        <h2>人员列表</h2>
+        <ul>
+            <li v-for="(val,index) in personList" :key="val.id">{{val.name}}-{{val.age}}</li>
+        </ul>
+        <hr><br>
+
+        <!-- 遍历对象 -->
+        <h2>车辆信息</h2>
+        <ul>
+            <li v-for="(val,k) in car" :key="k">{{k}}:{{val}}</li>
+        </ul>
+        <hr><br>
+
+         <!-- //遍历字符串 -->
+        <h2>字符串</h2>
+        <ul>
+            <li v-for="(char,index) in testStr" :key="index">{{char}}:{{index}}</li>
+        </ul>
+       <hr><br>
+       
+        <!-- 遍历指定次数 -->
+        <h2>遍历指定次数 3次</h2>
+        <!-- 直接写次数 -->
+        <ul>
+            <li v-for="(number,index) in 3" :key="index">{{number}}----{{index}}</li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    personList: [
+                        { id: 001, name: '张三', age: 18 },
+                        { id: 002, name: '李四', age: 19 },
+                        { id: 003, name: '王五', age: 20 }
+                    ],
+                    car: {
+                        name: "audi A4",
+                        price: '40w',
+                        date: '20030303'
+                    },
+                    testStr: 'jack'
+
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>

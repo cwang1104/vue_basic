@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>监视数据</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2>监视数据</h2>
+        <hr><br>
+
+        
+        <h2>人员信息</h2>
+
+
+        <button @click="student.age++">年龄+1岁</button>
+        <button @click="addSex">添加性别属性,默认值:男</button>
+        <button @click="student.sex = '未知'">修改性别</button>
+        <button @click="addFriends">列表首位添加一个朋友</button>
+        <button @click="editName">修改第一个朋友的名字为张三</button>
+        <button @click="addHobby">添加一个爱好</button>
+        <button @click="editHobby">修改第一个爱好为：开车</button>
+
+        <h2>school</h2>
+        <ul>
+            <li v-for="val,k in school" ::key="k">
+                {{k}}:{{val}}
+            </li>
+        </ul>
+<hr><br>
+        <h2>student</h2>
+        <h3>name:{{student.name}}</h3>
+        <h3>age:{{student.age}}</h3>
+        <h3 v-show="student.sex">sex:{{student.sex}}</h3>
+        <h3>hobby</h3>
+        <ul>
+            <li v-for="(val,index) in student.hobby" ::key="index">
+                {{val}}
+            </li>
+        </ul>
+        <h3>friends</h3>
+        <ul>
+            <li v-for="(val,index) in student.friends" ::key="index">
+                {{val.name}} : {{val.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    school:{
+                        name:"sgg",
+                        address:"bj"
+                    },
+                    student:{
+                        name:"tom",
+                        age:19,
+                        hobby:["抽烟","喝酒","烫头"],
+                        friends:[
+                            {name:"jerry",age:35},
+                            {name:"jack",age:33}
+                        ]
+                    }
+                }
+            },
+            methods: {
+                addSex(){
+                    this.$set(this.student,"sex","男")
+                },
+                addFriends(){
+                    this.student.friends.unshift({name:"tom",age:22})
+                },
+                editName(){
+                    this.student.friends[0].name = "张三"
+                },
+                addHobby(){
+                    this.student.hobby.push("开飞机")
+                },
+                editHobby(){
+                    this.student.hobby.splice(0,1,"开车")
+                }
+            },
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>

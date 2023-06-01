@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>key的原理</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2>列表排序</h2>
+        <hr><br>
+
+        <h2>人员信息</h2>
+        <input type="text" v-model="keyWords"><br><br>
+        <button @click="sortType = 2">年龄升序</button>
+        <button @click="sortType = 1">年龄降序</button>
+        <button @click="sortType = 0">恢复</button>
+        <!-- v-show实现 -->
+        <!-- <ul>
+            <li v-for="p,index in personList" :key="p.id" v-show="p.name.includes(keyWords)">
+                {{p.name}} - {{p.age}} - {{p.gender}}
+            </li>
+        </ul> -->
+
+        <ul>
+            <li v-for="p,index in filterPersons" :key="p.id">
+                {{p.name}} - {{p.age}} - {{p.gender}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    personList: [
+                        { id: 001, name: '马冬梅', age: 18, gender: "女" },
+                        { id: 002, name: '周冬雨', age: 20, gender: "女" },
+                        { id: 003, name: '周杰伦', age: 21, gender: "男" },
+                        { id: 004, name: '温兆伦', age: 22, gender: "男" }
+                    ],
+                    keyWords: "",
+                    sortType: 0
+                }
+            },
+            computed: {
+                filterPersons() {
+                    const parr = this.personList.filter((p) => {
+                        return p.name.indexOf(this.keyWords) !== -1
+                    })
+                    // 判断是否需要排序
+                    if (this.sortType) {
+                        parr.sort((p1, p2) => {
+                            return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+                        })
+                    }
+                    return parr
+
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>
