@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue 绑定样式</title>
+</head>
+
+<style>
+    .basic {
+        border: 2px solid wheat;
+        height: 200px;
+        width: 200px;
+    }
+
+    .happy {
+        background-color: red;
+        border: 2px solid black;
+    }
+
+    .sad {
+        background-color: aquamarine;
+    }
+
+    .sgg1 {
+        border-radius: 20px;
+    }
+
+    .sgg2 {
+        font-size: larger;
+    }
+
+    .sgg3 {
+        border: none;
+    }
+</style>
+
+<body>
+    <div id="root">
+        <h1>绑定样式</h1>
+        <!-- 字符串写法 适用于：样式的类名不确定，需要动态指定 -->
+        <div class="basic" :class="stylea" @click="changeMood">
+            <span>{{name}}</span>
+        </div>
+<br><br>
+        <!-- 数组写法 适用于：样式个数不确定，名字不确定 -->
+        <div class="basic" :class="classArr" @click="changeMood">
+            <span>{{name}}</span>
+        </div>
+
+        <br>
+        <br>
+        <!-- 对象写法 适用于：样式个数确定，名字确定  但是要动态应用-->
+        <div class="basic" :class="classOBJ" @click="changeMood">
+            <span>{{name}}</span>
+        </div>
+        <br>
+        <br>
+
+        <!-- style绑定 需要为对象写法 fontSize: fsize + "px;" -->
+        可写样式对象数组
+        <!-- <h2>style 绑定</h2>
+        <div class="basic" :style="{fontSize:  fsize+ 'px'}">
+            {{name}}
+        </div> -->
+        <h2>style 绑定</h2>
+        <div class="basic" :style="styleObj">
+            {{name}}
+        </div>
+
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    stylea:"normal",
+                    classArr:['sgg1','sgg2','sgg3'],
+                    classOBJ:{
+                        sgg1:false,
+                        sgg2:false
+                    },
+                    styleObj:{
+                        fontSize:"40px",
+                        color:'red',
+                        backgroundColor:'orange'
+                    }
+                }
+            },
+            methods:{
+                changeMood(){
+                    this.stylea = "happy"
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>
