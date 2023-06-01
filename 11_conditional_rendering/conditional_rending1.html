@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue 条件渲染</title>
+</head>
+
+<body>
+    <div id="root">
+
+        <h2>条件渲染</h2>
+        <hr>
+        <h2>当前值是： {{n}}</h2>
+        <br>
+        <button @click="n++">点击n+1</button><br><br>
+        <!-- v-if不能被打断 -->
+        <!-- v-if每次更改都需要渲染 -->
+        <div v-if="n===1">v-if-1</div>
+        <div v-else-if="n===2">v-if-2</div>
+        <div v-else-if="n===3">v-if-3</div>
+        <div v-else>else</div>
+        <div>@</div>
+
+        <!-- template 不破坏结构，只能和v-if一起使用，简化重复判断 -->
+        <template v-if="n===3">
+            <h2>jack</h2>
+            <h2>tom</h2>
+            <h2>jerry</h2>
+        </template>
+
+
+        <!-- v-show通过display:none控制，不需要每次都渲染，频繁更改时更节省性能 -->
+        <h2 v-show="n===1"> v-show-1</h2>
+        <h2 v-show="n===2"> v-show-2</h2>
+        <h2 v-show="n===3"> v-show-3</h2>
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    n: 0
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>
