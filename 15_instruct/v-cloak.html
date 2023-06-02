@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue</title>
+</head>
+<body>
+    <div id="root">
+        <!-- 在vue加载时移除v-cloak属性，配合css避免未插值语法展示在页面 -->
+        <h2>v-cloak指令</h2>
+        <div v-cloak>{{name}}</div>
+        <div v-text="str"></div>
+        <h2 v-html="str"></h2>
+    </div>
+    <script>
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"vue learn",
+                    str:"<h3>test h3 v-html</h3>"
+                }
+            }
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+</html>
