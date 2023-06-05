@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>生命周期</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2>vue 生命周期 销毁流程</h2>
+        <h2>n的值为：{{n}}</h2>
+        <!-- <h2 @click="n++">点击n++</h2> -->
+        <button @click="add">点击N++</button>
+        <button @click="bye">点击销毁</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn",
+                    n: 0
+                }
+            },
+
+            methods: {
+                add() {
+                    this.n++
+                },
+                bye(){
+                    console.log('bye')
+                    this.$destroy()
+                }
+            },
+            watch:{
+                n(){
+                    console.log('n改变了')
+                }
+            },
+            beforeCreate() {
+                console.log("beforeCreate")
+            },
+            created() {
+                console.log("created")
+            },
+            beforeMount() {
+                console.log("beforeMounted")
+            },
+            mounted() {
+                console.log("mounted")
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate")
+                // console.log(this.n)
+                // debugger;
+            },
+            updated() {
+                console.log("updated")
+                // console.log(this.n)
+                // debugger;
+                // this.n++
+            },
+            beforeDestroy() {  //对数据处理不触发更新
+                
+            },
+            destroyed() {
+                
+            },
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+
+</html>

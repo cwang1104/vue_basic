@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue</title>
+</head>
+<body>
+    <div id="root">
+        <h2>n的值为：{{n}}</h2>
+        <!-- <h2 @click="n++">点击n++</h2> -->
+        <button @click="add">点击N++</button>
+    </div>
+    <script>
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"vue learn",
+                    n:0
+                }
+            },
+            // template:`  <div>  
+            //             <h2>n的值为：{{n}}</h2>
+            //             <!-- <h2 @click="n++">点击n++</h2> -->
+            //             <button @click="add">点击N++</button>
+            //             </div>`,
+            methods: {
+                add(){
+                    this.n++
+                }
+            },
+            beforeCreate() {
+                console.log("beforeCreate")
+                // console.log("this",this)
+                // console.log("data",this._data)
+                // debugger;
+            },
+            created() {
+                console.log("created")
+                // console.log("this",this)
+                // console.log("data",this._data)
+                // debugger;
+            },
+            beforeMount(){
+                console.log("beforeMounted")
+                // debugger;
+            },
+            mounted() {
+                console.log("mounted")
+                // document.querySelector('h2').innerText = '12'
+            },
+
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+</html>

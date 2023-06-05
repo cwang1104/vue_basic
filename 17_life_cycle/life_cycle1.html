@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/vue.js"></script>
+    <title>Vue</title>
+</head>
+<style>
+    
+</style>
+<body>
+    <div id="root">
+
+    <h2>生命周期</h2>
+    <h2 :style="{opacity:opt}">生命周期</h2>
+        
+    </div>
+    <script>
+       const vm =  new Vue({
+            data(){
+                return{
+                    name:"vue learn",
+                    opt:1
+                }
+            },
+            mounted() {
+                setInterval(()=>{
+                    // console.log("opt",this.opt)
+                    this.opt =this.opt-0.06
+                    if (this.opt <=0) this.opt=1
+                },100)
+            },
+        })
+        vm.$mount("#root")
+    </script>
+</body>
+</html>
