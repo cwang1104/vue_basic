@@ -19,6 +19,8 @@
         <br>
         <hr>
         <xuesheng></xuesheng>
+        <hr>
+        <hello></hello>
     </div>
     <script>
         //创建组件
@@ -37,7 +39,7 @@
                 </div>
             `,
             methods: {
-                showName(){
+                showName() {
                     alert(this.scname)
                 }
             },
@@ -61,6 +63,22 @@
             `
         })
 
+
+        const hello = Vue.extend({
+            data() {
+                return {
+                    name: "jack"
+                }
+            },
+            template: `
+                <div>
+                    <h2>你好啊,{{name}}</h2>    
+                </div>
+            `
+
+        })
+
+        Vue.component('hello', hello)
 
         const vm = new Vue({
             components: {
