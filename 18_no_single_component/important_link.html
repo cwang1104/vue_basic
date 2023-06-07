@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,31 +8,33 @@
     <script src="../js/vue.js"></script>
     <title>Vue</title>
 </head>
+
 <body>
     <div id="root">
         <h2>一个重要的内置关系 {{name}}</h2>
     </div>
     <script>
 
-function Demo(){
-    this.a =1 
-    this.b=2
-}
+        function Demo() {
+            this.a = 1
+            this.b = 2
+        }
 
-const d = new Demo()
-console.log(Demo.prototype) //限式原型属性
-console.log(d.__proto__)  //隐式原型属性
-// console.log(Demo.prototype === d.__proto__) // true
-Demo.prototype.x = 99
-console.log('@',d.x)
-       const vm =  new Vue({
-            data(){
-                return{
-                    name:"vue learn"
+        const d = new Demo()
+        console.log(Demo.prototype) //限式原型属性
+        console.log(d.__proto__)  //隐式原型属性
+        // console.log(Demo.prototype === d.__proto__) // true
+        Demo.prototype.x = 99
+        console.log('@', d.x)
+        const vm = new Vue({
+            data() {
+                return {
+                    name: "vue learn"
                 }
             }
         })
         vm.$mount("#root")
     </script>
 </body>
+
 </html>
